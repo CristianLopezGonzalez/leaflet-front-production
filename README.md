@@ -11,7 +11,6 @@ Aplicación web en React + TypeScript para gestionar marcadores sobre un mapa in
 - React Router DOM
 - Axios
 - Tailwind CSS
-- CSS modular del proyecto donde todavía aplica
 
 ## Funcionalidades
 
