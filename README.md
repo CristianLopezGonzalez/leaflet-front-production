@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# Leaflet Front Production
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web en React + TypeScript para gestionar marcadores sobre un mapa interactivo con Leaflet. La app incluye autenticación, listado de marcadores, creación desde el mapa y eliminación de marcadores existentes.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18
+- TypeScript
+- Vite
+- Leaflet y React Leaflet
+- React Router DOM
+- Axios
+- CSS modular del proyecto
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Inicio de sesión con persistencia del token en `localStorage`.
+- Mapa interactivo centrado por defecto en Madrid.
+- Cambio de capa base entre OpenStreetMap y satélite de Esri.
+- Creación de marcadores haciendo clic sobre el mapa.
+- Listado de marcadores del usuario autenticado.
+- Eliminación de marcadores desde la lista.
+- Manejo básico de errores y estado de carga.
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18 o superior.
+- Un backend compatible ejecutándose en `http://localhost:5000/api`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Instalación
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+npm run build
+npm run lint
+npm run preview
 ```
+
+## Ejecución
+
+1. Inicia el backend en `http://localhost:5000/api`.
+2. Levanta la aplicación con `npm run dev`.
+3. Abre la URL que muestra Vite en el navegador.
+4. Inicia sesión y entra al mapa para gestionar tus marcadores.
+
+## Credenciales de ejemplo
+
+En la pantalla de login se muestran unas credenciales de prueba:
+
+- Email: `test@gmail.com`
+- Contraseña: `test123`
+
+## Estructura del proyecto
+
+- `src/pages`: pantallas principales como login y mapa.
+- `src/components`: componentes reutilizables de UI.
+- `src/hooks`: lógica de estado y eventos del mapa.
+- `src/services`: cliente HTTP y servicios de autenticación/marcadores.
+- `src/utils`: estilos CSS específicos de cada vista.
+
+## API
+
+La app consume un backend REST en `src/services/api.ts`. Por defecto usa la base URL `http://localhost:5000/api`.
+
+Si necesitas apuntar a otro entorno, ajusta ese archivo antes de compilar la app.
+
+## Notas
+
+- El token de acceso se guarda en `localStorage`.
+- Si el backend responde `401`, la app limpia el token y redirige al login.
