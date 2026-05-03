@@ -10,7 +10,8 @@ Aplicación web en React + TypeScript para gestionar marcadores sobre un mapa in
 - Leaflet y React Leaflet
 - React Router DOM
 - Axios
-- CSS modular del proyecto
+- Tailwind CSS
+- CSS modular del proyecto donde todavía aplica
 
 ## Funcionalidades
 

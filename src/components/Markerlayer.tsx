@@ -11,11 +11,11 @@ export const MarkerLayer = ({ markers }: MarkerLayerProps) => {
       {markers.map((marker) => (
         <Marker key={marker.id} position={[marker.lat, marker.lng]}>
           <Popup>
-            <div>
-              <p style={{ margin: 0, fontWeight: 500 }}>
+            <div className="min-w-[180px]">
+              <p className="m-0 text-sm font-semibold text-slate-950">
                 {marker.label || "Marcador"}
               </p>
-              <p style={{ margin: "4px 0 0 0", fontSize: "12px", color: "#666" }}>
+              <p className="mt-1 text-xs text-slate-500">
                 {marker.lat.toFixed(4)}, {marker.lng.toFixed(4)}
               </p>
             </div>

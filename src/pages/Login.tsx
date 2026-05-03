@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import authService from '../services/AuthServices';
-import '../utils/login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -26,7 +24,8 @@ export default function Login() {
     try {
       await authService.login({ email, password });
       navigate('/map', { replace: true });
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('Email o contraseña incorrectos');
     } finally {
       setIsLoading(false);
@@ -34,17 +33,27 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-card">
-          <div className="login-header">
-            <h1 className="login-title">Iniciar sesión</h1>
-            <p className="login-subtitle">user: test@gmail.com | pass: test123</p>
+    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.18),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(30,41,59,0.18),_transparent_32%),linear-gradient(135deg,_#e2e8f0_0%,_#f8fafc_44%,_#eef2ff_100%)] px-4 py-8 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(circle_at_center,black_55%,transparent_100%)]" />
+
+      <div className="relative z-10 grid min-h-[calc(100vh-4rem)] place-items-center">
+        <div className="w-full max-w-md rounded-[28px] border border-white/70 bg-white/80 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl sm:p-8">
+          <div className="text-center">
+            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-lg shadow-slate-950/20">
+              <span className="text-lg font-bold">L</span>
+            </div>
+
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Iniciar sesión
+            </h1>
+            <p className="mt-3 text-sm leading-6 text-slate-500">
+              user: test@gmail.com | pass: test123
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                 Email
               </label>
               <input
@@ -52,7 +61,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="form-input"
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-slate-500 focus:bg-white focus:ring-4 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
                 placeholder="tu@email.com"
                 required
                 disabled={isLoading}
@@ -60,8 +69,8 @@ export default function Login() {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password" className="form-label">
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                 Contraseña
               </label>
               <input
@@ -69,7 +78,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="form-input"
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-slate-500 focus:bg-white focus:ring-4 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
                 placeholder="••••••••"
                 required
                 disabled={isLoading}
@@ -78,20 +87,22 @@ export default function Login() {
             </div>
 
             {error && (
-              <div className="error-message">
-                <span className="error-icon">⚠</span>
-                <p>{error}</p>
+              <div className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-600 text-[11px] font-bold leading-none text-white">
+                  !
+                </span>
+                <p className="m-0">{error}</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={isLoading}
-              className="submit-button"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-950 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-950/25 focus:outline-none focus:ring-4 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isLoading ? (
                 <>
-                  <span className="spinner"></span>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                   Cargando...
                 </>
               ) : (
@@ -100,13 +111,8 @@ export default function Login() {
             </button>
           </form>
 
-          <div className="login-footer">
-            <p className="footer-text">
-              ¿No tienes cuenta?{' '}
-              <Link to="/register" className="footer-link">
-                Regístrate aquí
-              </Link>
-            </p>
+          <div className="mt-7 border-t border-slate-200/80 pt-5 text-center text-sm leading-6 text-slate-500">
+            Usa las credenciales de prueba mostradas arriba para entrar.
           </div>
         </div>
       </div>
