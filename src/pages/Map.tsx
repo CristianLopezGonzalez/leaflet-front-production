@@ -6,6 +6,7 @@ import { MarkerLayer } from "../components/Markerlayer";
 import { MarkerList } from "../components/Markerlist";
 import { MarkerModal } from "../components/Markermodal";
 import Header from "../components/Header";
+import "leaflet/dist/leaflet.css";
 
 const { BaseLayer } = LayersControl;
 
