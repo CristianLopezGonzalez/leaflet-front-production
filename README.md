@@ -16,10 +16,30 @@ Aplicación web en React + TypeScript para gestionar marcadores sobre un mapa in
 
 - Inicio de sesión con persistencia del token en `localStorage`.
 - Mapa interactivo centrado por defecto en Madrid.
+
+<img width="642" height="515" alt="image" src="https://github.com/user-attachments/assets/2f5108f4-893f-4411-b02d-4dec0a1ff2c8" />
+
 - Cambio de capa base entre OpenStreetMap y satélite de Esri.
+  
+  <img width="642" height="515" alt="image" src="https://github.com/user-attachments/assets/21c88e0c-83d3-44ae-bdc4-52663e9dfd8b" />
+  
+  <img width="642" height="515" alt="image" src="https://github.com/user-attachments/assets/e02b4ca5-2286-4a89-be43-b045535b6af7" />
+
+
+
 - Creación de marcadores haciendo clic sobre el mapa.
+  
+<img width="496" height="339" alt="image" src="https://github.com/user-attachments/assets/c6b9358d-9eb3-4bac-98db-2d4bddab8d6b" />
+
 - Listado de marcadores del usuario autenticado.
+
+<img width="366" height="240" alt="image" src="https://github.com/user-attachments/assets/bd6d239c-ee76-427b-8b28-c1e5d1320b78" />
+
+
 - Eliminación de marcadores desde la lista.
+
+<img width="369" height="210" alt="image" src="https://github.com/user-attachments/assets/520ac214-137b-4fa3-8d08-70b572308c7e" />
+
 - Manejo básico de errores y estado de carga.
 
 ## Requisitos
